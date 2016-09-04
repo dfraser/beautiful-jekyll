@@ -18,11 +18,13 @@ I don't need to do it all the time, I'm a nerd, and I want it cheaper.  Let's tr
 
 I decided to try this project on [DigitalOcean](https://digitalocean.com) because it looked easy, seemed cost-effective, and was recommended by a few of my friends. I went to their site, signed up, entered my credit card info, and set up [two-factor authentication](https://en.wikipedia.org/wiki/Multi-factor_authentication).
 
-I hit the "create droplet" button (DigitalOcean calls servers "droplets") and selected the simplest, cheapest choice, the 512MB Ubuntu server. At the current rates, it will cost me $0.007 per hour to run -- I can afford this for a couple hours a month.
+I hit the "Create Droplet" button (DigitalOcean calls servers "droplets") and selected the simplest, cheapest choice, the 512MB Ubuntu server. At the current rates, it will cost me $0.007 per hour to run -- I can afford this for a couple hours a month.
 
 DigitalOcean uses SSH to secure their servers, so I used PuTTYgen from the [PuTTY](http://www.chiark.greenend.org.uk/~sgtatham/putty/) project to generate an SSH key, and added the public side to my droplet. They have a [great tutorial](https://www.digitalocean.com/community/tutorials/how-to-use-ssh-keys-with-putty-on-digitalocean-droplets-windows-users) on how to do this, if you're not an old hat with SSH like me.
 
 I clicked "Create" with all the rest as defaults, and seconds later I had my very own Ubuntu server. I logged in with PuTTY to get started.
+
+![putty screenshot]({{ site.url }}/blog_images/putty_screenshot.png)
 
 # Icecast2
 
@@ -35,16 +37,18 @@ I was able to connect easily from NiceCast on my Mac. I used the IP address Digi
 # DNS
 
 
-I wanted people to access my music stream with a proper URL, and DigitalOcean changes IP addresses whenever you create or destroy a droplet, so it was time for some [dynamic DNS](https://en.wikipedia.org/wiki/Dynamic_DNS). I use [EasyDNS](https://easydns.com) to host my domain name, so I used their service. There are other ones available out there, many for free, if your situation is different. EasyDNS reccomended the Linux tool "ez-ipupdate" to configure their service. It was available in the Ubuntu packages and included a setup script as well.  I just selected EasyDNS, entered my username, my access token, and the hostname I wanted to use (radio.capybara.org) and the package did the rest. A bit more playing with systemctl, and I had my dynamic DNS working.
+I wanted people to access my music stream with a proper URL, and DigitalOcean changes IP addresses whenever you create or destroy a droplet, so it was time for some [dynamic DNS](https://en.wikipedia.org/wiki/Dynamic_DNS). I use [EasyDNS](https://easydns.com) to host my domain name, so I used their service. There are other ones available out there, many for free, if your situation is different. EasyDNS reccomended the Linux tool "`ez-ipupdate`" to configure their service. It was available in the Ubuntu packages and included a setup script as well.  I just selected EasyDNS, entered my username, my access token, and the hostname I wanted to use (`radio.capybara.org`) and the package did the rest. A bit more playing with `systemctl`, and I had my dynamic DNS working.
 
 # Systems Stuff - The Snapshot
 
-The next thing I did was to reboot my droplet -- I wanted to confirm that everything was going to start automatically. After testing everything out, I shut it down with the "`poweroff`" command.  Powering off your Droplet doesn't change the amount you're charged, since the computer and disk space and IP address are still all allocated in your name. But you need to power off to make a
-"snapshot.""
+The next thing I did was to reboot my droplet -- I wanted to confirm that everything was going to start automatically. After testing everything out, I shut it down with the "`poweroff`" command.  Powering off your Droplet doesn't change the amount you're charged, since the computer and disk space and IP address are still all allocated in your name.
 
-On the DigitalOcean website, I created snapshot of my droplet. You can use the snapshot as a template to create new droplets in the future.  DigitalOcean charges you money to store them, but it's significantly less than the cost of having your server running. At the time of writing, $0.05 per gigabyte per month. My snapshot was exactly 1 gigabyte.
+On the DigitalOcean website, I created "snapshot" of my droplet. You can use this snapshot as a template to create new droplets in the future. DigitalOcean charges you money to store them, but it's significantly less than the cost of having your server running. At the time of writing, $0.05 per gigabyte per month. My snapshot was exactly 1 gigabyte.
 
 At this point I could destroy my droplet -- this releases all of its resources and takes you off the clock. When I'm ready to stream, I can create a new Droplet at any time from my snapshot, use it for as many hours as I want, and then destroy it.
+
+![do screenshot]({{ site.url }}/blog_images/droplet_screenshot.png)
+
 
 # Conclusion
 
