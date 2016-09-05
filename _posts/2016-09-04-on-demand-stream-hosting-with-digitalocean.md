@@ -24,7 +24,7 @@ DigitalOcean uses SSH to secure their servers, so I used PuTTYgen from the [PuTT
 
 I clicked "Create" with all the rest as defaults, and seconds later I had my very own Ubuntu server. I logged in with PuTTY to get started.
 
-![putty screenshot]({{ site.url }}/blog_images/putty_screenshot.png)
+![putty screenshot]({{ site.baseurl }}/blog_images/putty_screenshot.png)
 
 # Icecast2
 
@@ -32,7 +32,7 @@ I knew I wanted to use [Icecast2](http://icecast.org/) for streaming, and it's a
 
 I was able to connect easily from NiceCast on my Mac. I used the IP address DigitalOcean gave me for my droplet, made up a mountpoint name (`/music`) and used the default login (`source`) with the password I gave during setup.  Everything worked.
 
-![nicecast screenshot]({{ site.url }}/blog_images/nicecast.png)
+![nicecast screenshot]({{ site.baseurl }}/blog_images/nicecast.png)
 
 # DNS
 
